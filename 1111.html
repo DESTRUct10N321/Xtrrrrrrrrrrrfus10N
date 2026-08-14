@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨機 GIF 按鍵</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #222;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 按鈕 */
+        #gifButton {
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            width: 100vw;
+            height: 10px;
+            bottom: 30px;
+            transform: translateX(-50%);
+
+            padding: 15px 35px;
+            font-size: 20px;
+            border: none;
+            border-radius: 12px;
+
+            background: #f3eb77;
+            color: white;
+            cursor: pointer;
+        }
+
+        #black {
+            position: fixed;
+            width: 100vw;
+            
+            z-index: 100;
+            height: 30px;
+            bottom: 0px;
+            background-color: #222;
+        }
+
+        #gifButton:hover {
+            background: #f3fa90;
+        }
+
+        /* GIF */
+        .gif {
+            position: fixed;
+            pointer-events: none;
+
+            animation: appear 0.2s ease-out;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #BPM {
+            color: #7289da
+        }
+    </style>
+
+</head>
+
+<body>
+    <input type="range" min=10 max=2000 oninput="bpmCHANGE()">
+    <p id="BPM"></p>
+
+    <button id="gifButton" onclick="randomGIF()">
+    </button>
+    <div id="black"></div>
+    <script>
+        let BPM = 300;
+
+        const gifs = [
+        "gifs/costume5.svg",
+        "gifs/costume6.svg",
+        "gifs/costume4.svg",
+        "gifs/costume6.svg",
+        "gifs/costume4.svg",
+        "gifs/costume3.svg",
+        "gifs/costume3.svg",
+        "gifs/costume3.svg"
+        ];
+
+        function bpmCHANGE() {
+        const p = document.querySelector("#BPM")
+        BPM = document.querySelector("input").value
+        p.innerHTML=(document.querySelector("input").value)
+        }
+
+        function randomGIF() {
+        for (let i = 0; i < BPM/12; i++) { setTimeout(()=>{
+
+            // 隨機選 GIF
+            const randomGif =
+            gifs[Math.floor(Math.random() * gifs.length)];
+
+            // 建立 GIF
+            const img = document.createElement("img");
+
+            img.src = randomGif;
+            img.className = "gif";
+
+            // 隨機大小：100 ~ 400 px
+            const size =
+            150;
+
+            img.style.width = size + "px";
+
+            // 隨機位置
+            let x =
+            Math.floor(Math.random()*5)*200
+
+            let y =
+            (0);
+
+            img.style.left = x + "px";
+            img.style.top = y + "px";
+
+            function down(){
+            y+=10;
+            img.style.top = y + "px";
+            if (y+img.offsetHeight>850){
+            if (!img.src.endsWith("gifs/costume6.svg")){
+            img.style.display="none"
+            console.log(img.src)
+            const img2 = document.createElement("img");
+            img2.className = "gif";
+            img2.src = "gifs/costume7.svg";
+            img2.style.left = x + "px";
+            img2.style.top = "700px";
+            document.body.appendChild(img2);
+            setTimeout(()=>{
+            img2.style.display = "none"
+            }, 10*BPM/6)
+            return
+            } else{
+                
+            }
+            }
+            requestAnimationFrame(down)
+            }
+            requestAnimationFrame(down)
+
+            // 加到畫面
+            document.body.appendChild(img);
+            }, Math.random()*5*1000)
+            }
+            }
+
+
+            </script>
+
+</body>
+
+</html>
