@@ -102,8 +102,8 @@
         p.innerHTML=(document.querySelector("input").value)
         }
 
-        function randomGIF() {
-        for (let i = 0; i < BPM/12; i++) { setTimeout((BPM/12*1000)=>{
+        function randomGIF() { setTimeout(()=>{
+        for (let i = 0; i < BPM/12; i++) { setTimeout(()=>{
 
             // 隨機選 GIF
             const randomGif =
@@ -160,6 +160,7 @@
             document.body.appendChild(img);
             }, Math.random()*5*1000)
             }
+            }, 2000*BPM/12)
             }
 
 
