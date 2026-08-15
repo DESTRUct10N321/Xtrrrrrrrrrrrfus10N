@@ -101,8 +101,12 @@
         BPM = document.querySelector("input").value
         p.innerHTML=(document.querySelector("input").value)
         }
-
         function randomGIF() { 
+            document.querySelector("#gifButton").disabled=true
+            setTimeout((){
+                document.querySelector("#gifButton").disabled=false
+
+            },BPM*1000/12)
         for (let i = 0; i < BPM/12; i++) { setTimeout(()=>{
 
             // 隨機選 GIF
