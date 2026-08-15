@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÀH¾÷ GIF «öÁä</title>
+    <title>éš¨æ©Ÿ GIF æŒ‰éµ</title>
 
     <style>
         body {
@@ -15,7 +15,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* «ö¶s */
+        /* æŒ‰éˆ• */
         #gifButton {
             position: fixed;
             z-index: 9999;
@@ -103,25 +103,25 @@
         }
 
         function randomGIF() {
-        for (let i = 0; i < BPM/12; i++) { setTimeout(()=>{
+        for (let i = 0; i < BPM/12; i++) { setTimeout((BPM/12*1000)=>{
 
-            // ÀH¾÷¿ï GIF
+            // éš¨æ©Ÿé¸ GIF
             const randomGif =
             gifs[Math.floor(Math.random() * gifs.length)];
 
-            // «Ø¥ß GIF
+            // å»ºç«‹ GIF
             const img = document.createElement("img");
 
             img.src = randomGif;
             img.className = "gif";
 
-            // ÀH¾÷¤j¤p¡G100 ~ 400 px
+            // éš¨æ©Ÿå¤§å°ï¼š100 ~ 400 px
             const size =
             150;
 
             img.style.width = size + "px";
 
-            // ÀH¾÷¦ì¸m
+            // éš¨æ©Ÿä½ç½®
             let x =
             Math.floor(Math.random()*5)*200
 
@@ -156,7 +156,7 @@
             }
             requestAnimationFrame(down)
 
-            // ¥[¨ìµe­±
+            // åŠ åˆ°ç•«é¢
             document.body.appendChild(img);
             }, Math.random()*5*1000)
             }
